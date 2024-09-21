@@ -5,21 +5,29 @@ import java.net.URISyntaxException;
 
 import org.junit.Assert;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import restAssured.testBase;
 
-public class RestAPIPOSTStep {
+public class RestAPIPOSTStep extends testBase{
 
-    private final String BASE_URL = "https://reqres.in/";
+    testBase base;    
+    String baseUrl;
     private Response response;
    
-    
+    @Before
+    public void setup(){
+        base = new testBase();
+        baseUrl  = prop.getProperty("BASE_URL");
+    }
+
     @Given("Get call to {string}")
     public void get_call_to(String url) throws URISyntaxException {
-        RestAssured.baseURI = BASE_URL;
+        RestAssured.baseURI = baseUrl;
         RequestSpecification  requestSpecification = RestAssured.given();
         response = requestSpecification.when().get(new URI(url));
     }
