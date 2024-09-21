@@ -1,0 +1,4 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "jdk.runConfig.env": "CUCUMBER_PUBLISH_ENABLED=true"
+}
